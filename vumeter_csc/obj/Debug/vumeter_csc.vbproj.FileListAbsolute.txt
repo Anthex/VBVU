@@ -1,0 +1,11 @@
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\bin\Debug\vumeter_csc.exe.config
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\bin\Debug\vumeter_csc.exe
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\bin\Debug\vumeter_csc.pdb
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\bin\Debug\vumeter_csc.xml
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\obj\Debug\WindowsApplication1.Form1.resources
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\obj\Debug\WindowsApplication1.Resources.resources
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\obj\Debug\vumeter_csc.vbproj.GenerateResource.Cache
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\obj\Debug\vumeter_csc.exe
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\obj\Debug\vumeter_csc.xml
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\obj\Debug\vumeter_csc.pdb
+C:\Users\achil\Documents\Visual Studio 2015\Projects\vumeter_csc\vumeter_csc\obj\Debug\vumeter_csc.vbprojResolveAssemblyReference.cache
