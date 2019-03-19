@@ -1,7 +1,7 @@
 ﻿Imports CSCore
 Imports CSCore.CoreAudioAPI
 Imports System.IO.Ports
-
+Imports System.Diagnostics
 
 Public Class Form1
 
@@ -9,6 +9,20 @@ Public Class Form1
 
     Shared CurrentProcessID As Integer = 8176
 
+    Private Shared Function Bezier(x_int)
+        Dim x As Decimal 'scaled
+        x = x_int / 255
+        Dim u0, u1, u2, u3 As Decimal
+        u0 = 0.0
+        u1 = 0.01
+        u2 = 0.005
+        u3 = 1.0
+
+        Dim result As Byte
+        result = 255 * (Math.Pow((1 - x), 3) * u0 + Math.Pow((1 - x), 2) * 3 * x * u1 + Math.Pow(x, 2) * 3 * (1 - x) * u2 + u3 * Math.Pow(x, 3))
+        Debug.Print(x_int.ToString + " - " + x.ToString + " - " + result.ToString)
+        Return result
+    End Function
 
     Private Shared Function GetDefaultAudioSessionManager2(dataFlow As DataFlow) As AudioSessionManager2
         Using enumerator = New MMDeviceEnumerator()
@@ -36,6 +50,8 @@ Public Class Form1
         port.StopBits = IO.Ports.StopBits.One
         port.DataBits = 8
         port.Parity = IO.Ports.Parity.None
+        port.ReadTimeout = 5
+        port.WriteTimeout = 5
 
         Try
             port.Open()
@@ -54,8 +70,6 @@ Public Class Form1
         For Each k As Double In proclist
             leftval = 0
             Try
-
-
                 For Each session In sessionEnumerator
                     Using session2 = session.QueryInterface(Of AudioSessionControl2)()
                         If session2.ProcessID = k Then
@@ -134,8 +148,22 @@ Public Class Form1
                                     Catch ex As IndexOutOfRangeException
                                     End Try
                                 End If
-                                port.Write(Chr(leftval))
-                                port.Write(Chr(rightval + 64))
+                                Try
+
+                                    port.Write(Chr(leftval))
+                                    port.Write(Chr(rightval + 64))
+                                Catch ex As System.TimeoutException
+                                    Timer1.Stop()
+                                    port.Close()
+                                    Threading.Thread.Sleep(500)
+                                    Try
+                                        port.Open()
+                                    Catch exOpen As Exception
+
+                                    End Try
+                                    Timer1.Start()
+
+                                End Try
                             End Using
                         End If
 
@@ -210,6 +238,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        port.Close()
         Me.Close()
 
     End Sub
@@ -227,12 +256,12 @@ Public Class Form1
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         ColorDialog1.ShowDialog()
-        setPrimaryColor(ColorDialog1.Color.R, ColorDialog1.Color.G, ColorDialog1.Color.B)
+        SetPrimaryColor(ColorDialog1.Color.R, ColorDialog1.Color.G, ColorDialog1.Color.B)
         Button4.BackColor = ColorDialog1.Color
     End Sub
 
-    Private Sub setPrimaryColor(r As Byte, g As Byte, b As Byte)
-        Dim msg As String = Chr(Convert.ToByte(127)) + Chr(Convert.ToByte(r)) + Chr(Convert.ToByte(g)) + Chr(Convert.ToByte(b))
+    Private Sub SetPrimaryColor(r As Byte, g As Byte, b As Byte)
+        Dim msg As String = Chr(Convert.ToByte(127)) + Chr(Convert.ToByte(Bezier(r))) + Chr(Convert.ToByte(Bezier(g))) + Chr(Convert.ToByte(Bezier(b)))
         If port.IsOpen Then
 
             Try
@@ -241,8 +270,8 @@ Public Class Form1
             End Try
         End If
     End Sub
-    Private Sub setSecondaryColor(r As Byte, g As Byte, b As Byte)
-        Dim msg As String = Chr(Convert.ToByte(125)) + Chr(Convert.ToByte(r)) + Chr(Convert.ToByte(g)) + Chr(Convert.ToByte(b))
+    Private Sub SetSecondaryColor(r As Byte, g As Byte, b As Byte)
+        Dim msg As String = Chr(Convert.ToByte(125)) + Chr(Convert.ToByte(Bezier(r))) + Chr(Convert.ToByte(Bezier(g))) + Chr(Convert.ToByte(Bezier(b)))
         If port.IsOpen Then
 
             Try
@@ -251,7 +280,7 @@ Public Class Form1
             End Try
         End If
     End Sub
-    Private Sub changeMode(mode As Integer)
+    Private Sub ChangeMode(mode As Integer)
         If port.IsOpen Then
 
             Try
@@ -264,32 +293,32 @@ Public Class Form1
         End If
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        changeMode(0)
+        ChangeMode(0)
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        changeMode(1)
+        ChangeMode(1)
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        changeMode(2)
+        ChangeMode(2)
     End Sub
 
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
-        changeMode(3)
+        ChangeMode(3)
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
-        changeMode(4)
+        ChangeMode(4)
     End Sub
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
-        changeMode(5)
+        ChangeMode(5)
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         ColorDialog2.ShowDialog()
-        setSecondaryColor(ColorDialog2.Color.R, ColorDialog2.Color.G, ColorDialog2.Color.B)
+        SetSecondaryColor(ColorDialog2.Color.R, ColorDialog2.Color.G, ColorDialog2.Color.B)
         Button3.BackColor = ColorDialog2.Color
     End Sub
 
@@ -301,6 +330,9 @@ Public Class Form1
         Timer1.Interval = CInt(1000 / CInt(ComboBox2.SelectedItem))
     End Sub
 
+    Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        port.Close()
+    End Sub
 End Class
 
 
