@@ -55,8 +55,10 @@ Partial Class Form1
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ColorDialog2 = New System.Windows.Forms.ColorDialog()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Panel1 = New System.Windows.Forms.Panel()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -151,28 +153,26 @@ Partial Class Form1
         '
         Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button3.ForeColor = System.Drawing.Color.Firebrick
-        Me.Button3.Location = New System.Drawing.Point(167, 227)
+        Me.Button3.Location = New System.Drawing.Point(276, 206)
         Me.Button3.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(100, 23)
+        Me.Button3.Size = New System.Drawing.Size(35, 23)
         Me.Button3.TabIndex = 17
-        Me.Button3.Text = "Select Color 2"
         Me.Button3.UseVisualStyleBackColor = False
         '
         'Button4
         '
         Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Button4.ForeColor = System.Drawing.Color.Firebrick
-        Me.Button4.Location = New System.Drawing.Point(167, 202)
+        Me.Button4.Location = New System.Drawing.Point(276, 338)
         Me.Button4.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(100, 23)
+        Me.Button4.Size = New System.Drawing.Size(35, 23)
         Me.Button4.TabIndex = 18
-        Me.Button4.Text = "Select Color 1"
         Me.Button4.UseVisualStyleBackColor = False
         '
         'CheckBox1
@@ -181,7 +181,7 @@ Partial Class Form1
         Me.CheckBox1.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CheckBox1.FlatAppearance.BorderSize = 0
         Me.CheckBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.CheckBox1.Location = New System.Drawing.Point(271, 213)
+        Me.CheckBox1.Location = New System.Drawing.Point(275, 363)
         Me.CheckBox1.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(36, 31)
@@ -388,10 +388,10 @@ Partial Class Form1
         'TrackBar1
         '
         Me.TrackBar1.LargeChange = 2
-        Me.TrackBar1.Location = New System.Drawing.Point(105, 287)
+        Me.TrackBar1.Location = New System.Drawing.Point(9, 337)
         Me.TrackBar1.Margin = New System.Windows.Forms.Padding(0)
         Me.TrackBar1.Name = "TrackBar1"
-        Me.TrackBar1.Size = New System.Drawing.Size(219, 45)
+        Me.TrackBar1.Size = New System.Drawing.Size(251, 45)
         Me.TrackBar1.TabIndex = 34
         Me.TrackBar1.TickStyle = System.Windows.Forms.TickStyle.Both
         Me.TrackBar1.Value = 5
@@ -410,12 +410,22 @@ Partial Class Form1
         '
         Me.ColorDialog2.FullOpen = True
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.PictureBox1.Location = New System.Drawing.Point(276, 229)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(35, 109)
+        Me.PictureBox1.TabIndex = 36
+        Me.PictureBox1.TabStop = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(333, 425)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.TrackBar1)
         Me.Controls.Add(Me.Panel5)
@@ -457,6 +467,7 @@ Partial Class Form1
         Me.Text = "Lightbar Control - VU"
         Me.TransparencyKey = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(1, Byte), Integer), CType(CType(0, Byte), Integer))
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -492,4 +503,5 @@ Partial Class Form1
     Friend WithEvents TrackBar1 As TrackBar
     Friend WithEvents Label8 As Label
     Friend WithEvents ColorDialog2 As ColorDialog
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

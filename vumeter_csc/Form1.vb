@@ -2,6 +2,8 @@
 Imports CSCore.CoreAudioAPI
 Imports System.IO.Ports
 Imports System.Diagnostics
+Imports System.Drawing.Drawing2D
+Imports System.ComponentModel
 
 Public Class Form1
 
@@ -24,6 +26,12 @@ Public Class Form1
         Return result
     End Function
 
+    Private Function updateGradient(col1 As Color, col2 As Color)
+        Dim G As Drawing.Graphics = PictureBox1.CreateGraphics
+        Dim gradBrush As New LinearGradientBrush(PictureBox1.DisplayRectangle, col2, col1, LinearGradientMode.Vertical)
+        G.FillRectangle(gradBrush, PictureBox1.DisplayRectangle)
+    End Function
+
     Private Shared Function GetDefaultAudioSessionManager2(dataFlow As DataFlow) As AudioSessionManager2
         Using enumerator = New MMDeviceEnumerator()
             Using device = enumerator.GetDefaultAudioEndpoint(dataFlow, Role.Multimedia)
@@ -44,8 +52,15 @@ Public Class Form1
     Dim proclist As New ArrayList
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ColorDialog1.Color = My.Settings.PrimaryColor
+        ColorDialog2.Color = My.Settings.SecondaryColor
+
+        Button4.BackColor = My.Settings.PrimaryColor
+        Button3.BackColor = My.Settings.SecondaryColor
+
+
         lastleft = lastright = 0
-        port.PortName = "COM3"
+        port.PortName = "COM7"
         port.BaudRate = 115200
         port.StopBits = IO.Ports.StopBits.One
         port.DataBits = 8
@@ -258,12 +273,14 @@ Public Class Form1
         ColorDialog1.ShowDialog()
         SetPrimaryColor(ColorDialog1.Color.R, ColorDialog1.Color.G, ColorDialog1.Color.B)
         Button4.BackColor = ColorDialog1.Color
+        My.Settings.PrimaryColor = ColorDialog1.Color
+        My.Settings.Save()
+        updateGradient(My.Settings.PrimaryColor, My.Settings.SecondaryColor)
     End Sub
 
     Private Sub SetPrimaryColor(r As Byte, g As Byte, b As Byte)
         Dim msg As String = Chr(Convert.ToByte(127)) + Chr(Convert.ToByte(Bezier(r))) + Chr(Convert.ToByte(Bezier(g))) + Chr(Convert.ToByte(Bezier(b)))
         If port.IsOpen Then
-
             Try
                 port.Write(msg)
             Catch ex As Exception
@@ -273,7 +290,6 @@ Public Class Form1
     Private Sub SetSecondaryColor(r As Byte, g As Byte, b As Byte)
         Dim msg As String = Chr(Convert.ToByte(125)) + Chr(Convert.ToByte(Bezier(r))) + Chr(Convert.ToByte(Bezier(g))) + Chr(Convert.ToByte(Bezier(b)))
         If port.IsOpen Then
-
             Try
                 port.Write(msg)
             Catch ex As Exception
@@ -320,11 +336,15 @@ Public Class Form1
         ColorDialog2.ShowDialog()
         SetSecondaryColor(ColorDialog2.Color.R, ColorDialog2.Color.G, ColorDialog2.Color.B)
         Button3.BackColor = ColorDialog2.Color
+        My.Settings.SecondaryColor = ColorDialog2.Color
+        My.Settings.Save()
+        updateGradient(My.Settings.PrimaryColor, My.Settings.SecondaryColor)
     End Sub
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         Me.Location = New Point(MousePosition.X - Button6.Location.X - Button6.Width / 2, MousePosition.Y - Button6.Location.Y - Button6.Height / 2)
     End Sub
+
 
     Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
         Timer1.Interval = CInt(1000 / CInt(ComboBox2.SelectedItem))
@@ -333,7 +353,21 @@ Public Class Form1
     Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         port.Close()
     End Sub
+
+    Private Sub PictureBox1_LoadCompleted(sender As Object, e As AsyncCompletedEventArgs) Handles PictureBox1.LoadCompleted
+        updateGradient(My.Settings.PrimaryColor, My.Settings.SecondaryColor)
+    End Sub
+
+    Private Sub Form1_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+
+    End Sub
+
+    Private Sub Form1_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
+
+        updateGradient(My.Settings.PrimaryColor, My.Settings.SecondaryColor)
+    End Sub
 End Class
+
 
 
 

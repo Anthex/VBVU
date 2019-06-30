@@ -48,7 +48,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSCore">
-      <HintPath>..\..\Visual Studio 2017\Projects\vumeter_csc\vumeter_csc\bin\Debug\CSCore.dll</HintPath>
+      <HintPath>..\..\..\OneDrive\Documents\Visual Studio 2017\Projects\vumeter_csc\CSCore.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
