@@ -24,7 +24,7 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim Panel1 As System.Windows.Forms.Panel
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -47,18 +47,25 @@ Partial Class Form1
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ColorDialog2 = New System.Windows.Forms.ColorDialog()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.PresetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OutrunToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VUmeterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WatermelonToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CandyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.QuitterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Panel1 = New System.Windows.Forms.Panel()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -70,13 +77,9 @@ Partial Class Form1
         Panel1.Size = New System.Drawing.Size(333, 24)
         Panel1.TabIndex = 3
         '
-        'Timer1
-        '
-        Me.Timer1.Enabled = True
-        '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel2.Location = New System.Drawing.Point(0, 411)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.Panel2.Name = "Panel2"
@@ -87,23 +90,25 @@ Partial Class Form1
         '
         Me.ComboBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.ForeColor = System.Drawing.Color.LightCyan
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(86, 69)
+        Me.ComboBox1.Location = New System.Drawing.Point(92, 69)
         Me.ComboBox1.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(137, 24)
+        Me.ComboBox1.Size = New System.Drawing.Size(131, 24)
         Me.ComboBox1.TabIndex = 15
         '
         'Button1
         '
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(231, 69)
+        Me.Button1.ForeColor = System.Drawing.Color.LightCyan
+        Me.Button1.Location = New System.Drawing.Point(227, 69)
         Me.Button1.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(63, 23)
+        Me.Button1.Size = New System.Drawing.Size(36, 24)
         Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Refresh"
+        Me.Button1.Text = "🔄"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox1
@@ -111,15 +116,17 @@ Partial Class Form1
         Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(84, Byte), Integer), CType(CType(121, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(86, 107)
+        Me.TextBox1.Location = New System.Drawing.Point(177, 371)
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(28, 14)
         Me.TextBox1.TabIndex = 5
+        Me.TextBox1.Visible = False
         '
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.ForeColor = System.Drawing.Color.LightCyan
         Me.Label1.Location = New System.Drawing.Point(14, 43)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
@@ -130,32 +137,34 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(17, 107)
+        Me.Label2.Location = New System.Drawing.Point(98, 369)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(65, 16)
         Me.Label2.TabIndex = 7
         Me.Label2.Text = "Manual ID"
+        Me.Label2.Visible = False
         '
         'Button2
         '
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(86, 104)
+        Me.Button2.Location = New System.Drawing.Point(176, 366)
         Me.Button2.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(63, 23)
         Me.Button2.TabIndex = 16
         Me.Button2.Text = "Unlock"
         Me.Button2.UseVisualStyleBackColor = True
+        Me.Button2.Visible = False
         '
         'Button3
         '
         Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.ForeColor = System.Drawing.Color.Firebrick
-        Me.Button3.Location = New System.Drawing.Point(276, 206)
+        Me.Button3.Location = New System.Drawing.Point(276, 346)
         Me.Button3.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(35, 23)
@@ -166,9 +175,9 @@ Partial Class Form1
         '
         Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.ForeColor = System.Drawing.Color.Firebrick
-        Me.Button4.Location = New System.Drawing.Point(276, 338)
+        Me.Button4.Location = New System.Drawing.Point(17, 346)
         Me.Button4.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(35, 23)
@@ -181,13 +190,15 @@ Partial Class Form1
         Me.CheckBox1.CheckAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CheckBox1.FlatAppearance.BorderSize = 0
         Me.CheckBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.CheckBox1.Location = New System.Drawing.Point(275, 363)
+        Me.CheckBox1.ForeColor = System.Drawing.Color.LightCyan
+        Me.CheckBox1.Location = New System.Drawing.Point(298, 43)
         Me.CheckBox1.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(36, 31)
         Me.CheckBox1.TabIndex = 19
         Me.CheckBox1.Text = "Lock"
         Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.CheckBox1.Visible = False
         '
         'Button5
         '
@@ -225,13 +236,14 @@ Partial Class Form1
         '
         'Timer2
         '
-        Me.Timer2.Interval = 1
+        Me.Timer2.Interval = 5
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.MediumSpringGreen
         Me.Label3.Location = New System.Drawing.Point(121, 43)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
@@ -242,6 +254,7 @@ Partial Class Form1
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.Color.LightCyan
         Me.Label4.Location = New System.Drawing.Point(17, 77)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
@@ -252,7 +265,8 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(17, 137)
+        Me.Label5.ForeColor = System.Drawing.Color.LightCyan
+        Me.Label5.Location = New System.Drawing.Point(14, 110)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(71, 16)
@@ -261,11 +275,11 @@ Partial Class Form1
         '
         'Button7
         '
-        Me.Button7.BackColor = System.Drawing.Color.Silver
+        Me.Button7.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Button7.FlatAppearance.BorderSize = 0
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.ForeColor = System.Drawing.Color.Firebrick
-        Me.Button7.Location = New System.Drawing.Point(95, 134)
+        Me.Button7.ForeColor = System.Drawing.Color.LightCyan
+        Me.Button7.Location = New System.Drawing.Point(92, 107)
         Me.Button7.Margin = New System.Windows.Forms.Padding(0)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(72, 26)
@@ -275,10 +289,11 @@ Partial Class Form1
         '
         'Button8
         '
-        Me.Button8.BackColor = System.Drawing.Color.Silver
+        Me.Button8.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Button8.FlatAppearance.BorderSize = 0
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Location = New System.Drawing.Point(167, 134)
+        Me.Button8.ForeColor = System.Drawing.Color.LightCyan
+        Me.Button8.Location = New System.Drawing.Point(164, 107)
         Me.Button8.Margin = New System.Windows.Forms.Padding(0)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(72, 26)
@@ -288,11 +303,12 @@ Partial Class Form1
         '
         'Button9
         '
-        Me.Button9.BackColor = System.Drawing.Color.Silver
+        Me.Button9.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Button9.Enabled = False
         Me.Button9.FlatAppearance.BorderSize = 0
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Location = New System.Drawing.Point(239, 134)
+        Me.Button9.ForeColor = System.Drawing.Color.LightCyan
+        Me.Button9.Location = New System.Drawing.Point(236, 107)
         Me.Button9.Margin = New System.Windows.Forms.Padding(0)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(72, 26)
@@ -302,10 +318,11 @@ Partial Class Form1
         '
         'Button10
         '
-        Me.Button10.BackColor = System.Drawing.Color.Silver
+        Me.Button10.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Button10.FlatAppearance.BorderSize = 0
         Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Location = New System.Drawing.Point(95, 160)
+        Me.Button10.ForeColor = System.Drawing.Color.LightCyan
+        Me.Button10.Location = New System.Drawing.Point(92, 133)
         Me.Button10.Margin = New System.Windows.Forms.Padding(0)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(72, 26)
@@ -315,11 +332,12 @@ Partial Class Form1
         '
         'Button11
         '
-        Me.Button11.BackColor = System.Drawing.Color.Silver
+        Me.Button11.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Button11.Enabled = False
         Me.Button11.FlatAppearance.BorderSize = 0
         Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Location = New System.Drawing.Point(167, 160)
+        Me.Button11.ForeColor = System.Drawing.Color.LightCyan
+        Me.Button11.Location = New System.Drawing.Point(236, 133)
         Me.Button11.Margin = New System.Windows.Forms.Padding(0)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(72, 26)
@@ -329,10 +347,11 @@ Partial Class Form1
         '
         'Button12
         '
-        Me.Button12.BackColor = System.Drawing.Color.Silver
+        Me.Button12.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Button12.FlatAppearance.BorderSize = 0
         Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Location = New System.Drawing.Point(239, 160)
+        Me.Button12.ForeColor = System.Drawing.Color.LightCyan
+        Me.Button12.Location = New System.Drawing.Point(164, 133)
         Me.Button12.Margin = New System.Windows.Forms.Padding(0)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(72, 26)
@@ -340,41 +359,9 @@ Partial Class Form1
         Me.Button12.Text = "Pulse"
         Me.Button12.UseVisualStyleBackColor = False
         '
-        'ComboBox2
-        '
-        Me.ComboBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {"10", "50", "100", "500", "1000"})
-        Me.ComboBox2.Location = New System.Drawing.Point(20, 220)
-        Me.ComboBox2.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(59, 24)
-        Me.ComboBox2.TabIndex = 31
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(17, 203)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(71, 16)
-        Me.Label6.TabIndex = 32
-        Me.Label6.Text = "Refresh rate"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(83, 223)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(21, 16)
-        Me.Label7.TabIndex = 33
-        Me.Label7.Text = "Hz"
-        '
         'Panel5
         '
-        Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel5.Location = New System.Drawing.Point(0, 418)
         Me.Panel5.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.Panel5.Name = "Panel5"
@@ -383,23 +370,25 @@ Partial Class Form1
         '
         'ColorDialog1
         '
+        Me.ColorDialog1.AnyColor = True
         Me.ColorDialog1.FullOpen = True
+        Me.ColorDialog1.SolidColorOnly = True
         '
         'TrackBar1
         '
         Me.TrackBar1.LargeChange = 2
-        Me.TrackBar1.Location = New System.Drawing.Point(9, 337)
+        Me.TrackBar1.Location = New System.Drawing.Point(20, 261)
         Me.TrackBar1.Margin = New System.Windows.Forms.Padding(0)
         Me.TrackBar1.Name = "TrackBar1"
-        Me.TrackBar1.Size = New System.Drawing.Size(251, 45)
+        Me.TrackBar1.Size = New System.Drawing.Size(294, 45)
         Me.TrackBar1.TabIndex = 34
-        Me.TrackBar1.TickStyle = System.Windows.Forms.TickStyle.Both
         Me.TrackBar1.Value = 5
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(17, 300)
+        Me.Label8.ForeColor = System.Drawing.Color.LightCyan
+        Me.Label8.Location = New System.Drawing.Point(17, 233)
         Me.Label8.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(65, 16)
@@ -408,31 +397,95 @@ Partial Class Form1
         '
         'ColorDialog2
         '
+        Me.ColorDialog2.AnyColor = True
         Me.ColorDialog2.FullOpen = True
+        Me.ColorDialog2.SolidColorOnly = True
         '
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.PictureBox1.Location = New System.Drawing.Point(276, 229)
+        Me.PictureBox1.Location = New System.Drawing.Point(17, 369)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(35, 109)
+        Me.PictureBox1.Size = New System.Drawing.Size(294, 22)
         Me.PictureBox1.TabIndex = 36
         Me.PictureBox1.TabStop = False
+        '
+        'Button13
+        '
+        Me.Button13.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.Button13.FlatAppearance.BorderSize = 0
+        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button13.ForeColor = System.Drawing.Color.PowderBlue
+        Me.Button13.Location = New System.Drawing.Point(267, 0)
+        Me.Button13.Margin = New System.Windows.Forms.Padding(0)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(33, 33)
+        Me.Button13.TabIndex = 37
+        Me.Button13.Text = "_"
+        Me.Button13.UseVisualStyleBackColor = False
+        '
+        'NotifyIcon1
+        '
+        Me.NotifyIcon1.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
+        Me.NotifyIcon1.Text = "NotifyIcon1"
+        Me.NotifyIcon1.Visible = True
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresetToolStripMenuItem, Me.QuitterToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(112, 48)
+        '
+        'PresetToolStripMenuItem
+        '
+        Me.PresetToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OutrunToolStripMenuItem, Me.VUmeterToolStripMenuItem, Me.WatermelonToolStripMenuItem, Me.CandyToolStripMenuItem})
+        Me.PresetToolStripMenuItem.Name = "PresetToolStripMenuItem"
+        Me.PresetToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
+        Me.PresetToolStripMenuItem.Text = "Preset"
+        '
+        'OutrunToolStripMenuItem
+        '
+        Me.OutrunToolStripMenuItem.Name = "OutrunToolStripMenuItem"
+        Me.OutrunToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OutrunToolStripMenuItem.Text = "Outrun"
+        '
+        'VUmeterToolStripMenuItem
+        '
+        Me.VUmeterToolStripMenuItem.Name = "VUmeterToolStripMenuItem"
+        Me.VUmeterToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.VUmeterToolStripMenuItem.Text = "VUmeter"
+        '
+        'WatermelonToolStripMenuItem
+        '
+        Me.WatermelonToolStripMenuItem.Name = "WatermelonToolStripMenuItem"
+        Me.WatermelonToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.WatermelonToolStripMenuItem.Text = "Watermelon"
+        '
+        'CandyToolStripMenuItem
+        '
+        Me.CandyToolStripMenuItem.Name = "CandyToolStripMenuItem"
+        Me.CandyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CandyToolStripMenuItem.Text = "Candy"
+        '
+        'QuitterToolStripMenuItem
+        '
+        Me.QuitterToolStripMenuItem.Name = "QuitterToolStripMenuItem"
+        Me.QuitterToolStripMenuItem.Size = New System.Drawing.Size(111, 22)
+        Me.QuitterToolStripMenuItem.Text = "Quitter"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(333, 425)
+        Me.Controls.Add(Me.Button13)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.TrackBar1)
         Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.Button12)
         Me.Controls.Add(Me.Button11)
         Me.Controls.Add(Me.Button10)
@@ -468,11 +521,11 @@ Partial Class Form1
         Me.TransparencyKey = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(1, Byte), Integer), CType(CType(0, Byte), Integer))
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Timer1 As Timer
     Friend WithEvents Panel2 As Panel
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Button1 As Button
@@ -495,13 +548,19 @@ Partial Class Form1
     Friend WithEvents Button10 As Button
     Friend WithEvents Button11 As Button
     Friend WithEvents Button12 As Button
-    Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label7 As Label
     Friend WithEvents Panel5 As Panel
     Friend WithEvents ColorDialog1 As ColorDialog
     Friend WithEvents TrackBar1 As TrackBar
     Friend WithEvents Label8 As Label
     Friend WithEvents ColorDialog2 As ColorDialog
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Button13 As Button
+    Friend WithEvents NotifyIcon1 As NotifyIcon
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents PresetToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OutrunToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents VUmeterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WatermelonToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents QuitterToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CandyToolStripMenuItem As ToolStripMenuItem
 End Class
